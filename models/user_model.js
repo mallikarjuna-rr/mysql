@@ -1,9 +1,8 @@
 const sequelize = require('../config/db');
-const {DataTypes} = require('sequelize');
-const Post = require('./post_model');
-const Info = require('./info_model');
+const { DataTypes } = require('sequelize');
 
-const User = sequelize.define('user',{
+
+const User = sequelize.define('user', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -31,8 +30,11 @@ const User = sequelize.define('user',{
     }
 });
 
-User.associations = function()  {
-    User.hasMany(Post, {foreignKey:'user_Id',onDelete: 'CASCADE'}),
-    User.hasOne(Info,{foreignKey:'user_Id',onDelete: 'CASCADE'})
+User.associations = function () {
+    const Post = require('./post_model');
+    const Info = require('./info_model');
+    console.log(" DONE.................")
+    User.hasMany(Post, { as: 'Post', foreignKey: 'user_Id' });
+    User.hasMany(Info, { as: 'Info', foreignKey: 'user_Id' });
 }
 module.exports = User;

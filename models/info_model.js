@@ -1,8 +1,8 @@
 const sequelize = require('../config/db');
-const {DataTypes} = require('sequelize');
-const User = require('./user_model');
+const { DataTypes } = require('sequelize');
+const User = require('../models/user_model');
 
-const Info = sequelize.define('info',{
+const Info = sequelize.define('info', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -17,7 +17,7 @@ const Info = sequelize.define('info',{
         type: DataTypes.STRING,
         allowNull: false
     },
-    user_Id:{
+    user_Id: {
         type: DataTypes.INTEGER,
         references: {
             model: 'users',
@@ -26,9 +26,7 @@ const Info = sequelize.define('info',{
     }
 });
 
-Info.associations = function() {
-    Info.belongsTo(User, {
-        foreignKey:'user_Id'
-    })
+Info.associations = function () {
+    Info.belongsTo(User, { as: 'User', foreignKey: 'user_Id' })
 }
 module.exports = Info;
