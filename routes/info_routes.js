@@ -1,9 +1,12 @@
-const express = require('express');
-const infoRouter = express.Router();
 const { createInfo } = require('../controler/info_controller');
 
 
-infoRouter.post('/create', createInfo);
+function infoRouter(router) {
+    router.post('/info/create', createInfo);
+}
 
 
 module.exports = infoRouter;
+
+
+

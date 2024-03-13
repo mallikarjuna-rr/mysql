@@ -12,7 +12,7 @@ const createUser = async(req, res) => {
 
 const getAllUsers = async(req,res) => {
     const data = await User.findAll({
-        include: [{model: Info}, {model:Post}]
+        include: [{model: Info, as: 'Info'}, {model:Post, as: 'Post'}]
     });
     res.status(200).send(data)
 }
