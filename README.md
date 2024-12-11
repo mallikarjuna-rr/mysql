@@ -5,6 +5,3 @@ malli
 
 vishnu
 
-siva
-
-Deva
