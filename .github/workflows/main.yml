@@ -20,7 +20,7 @@ jobs:
 
   merge-pr:
     needs: run-tests
-    if: startsWith(github.event.pull_request.head.ref, 'update-')'
+    if: startsWith(github.event.pull_request.head.ref, 'update-')
     runs-on: ubuntu-latest
     steps:
       - name: Automerge PR
