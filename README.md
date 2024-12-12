@@ -1,1 +1,13 @@
 # mysql
+Nagaraju
+
+malli
+
+
+
+vishnu
+
+
+
+
+
