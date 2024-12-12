@@ -3,6 +3,8 @@ name: CI
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+    branches:
+      - main
 
 jobs:
   run-tests:
@@ -27,7 +29,7 @@ jobs:
 
   merge-pr:
     needs: run-tests
-    if: contains(github.event.pull_request.head.ref, 'update')
+    if: ${{ github.base_ref == 'main' && startsWith(github.head_ref, 'update') }}
     runs-on: ubuntu-latest
     steps:
       - name: Automerge PR
