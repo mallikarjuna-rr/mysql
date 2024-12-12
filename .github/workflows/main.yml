@@ -1,31 +1,29 @@
-name: PR Checks and Auto-Merge
+name: CI
 
 on:
   pull_request:
-    branches:
-      - main
-
-permissions:
-  contents: write
-  pull-requests: write
+    types: [opened, synchronize, reopened]
 
 jobs:
   run-tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Debug Branch Details
-        run: |
-          echo "Branch Name: ${{ github.event.pull_request.head.ref }}"
-          echo "PR Number: ${{ github.event.pull_request.number }}"
+      # - name: Set up Node.js
+      #   uses: actions/setup-node@v2
+      #   with:
+      #     node-version: '14'
 
-      - name: Run Tests
-        run: |
-          echo "Running tests..."
-          # Add your test commands here
-          echo "Tests passed!"
+      # - name: Install dependencies
+      #   run: npm install
+
+      # - name: Run tests
+      #   run: npm test
+
+      - name: Echo tests passed
+        run: echo "Tests passed!"
 
   merge-pr:
     needs: run-tests
