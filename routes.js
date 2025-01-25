@@ -18,3 +18,6 @@ InfoModel.associations();
 UserModel.associations();
 
 module.exports = router
+
+
+// This is route file
